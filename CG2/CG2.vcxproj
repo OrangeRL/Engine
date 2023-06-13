@@ -181,6 +181,7 @@
     <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="Pattern2.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="ReilCamera.cpp" />
     <ClCompile Include="Rhythm.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="ParticleManager.h" />
     <ClInclude Include="Pattern2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PostEffect.h" />
     <ClInclude Include="ReilCamera.h" />
     <ClInclude Include="Rhythm.h" />
     <ClInclude Include="PlayerBullet.h" />

@@ -5,6 +5,7 @@
 #include "FPS.h"
 #include"fbxsdk.h"
 #include"FbxLoader.h"
+#include"PostEffect.h"
 
 WinApp winApp_;
 using namespace DirectX;
@@ -27,7 +28,7 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 	FbxManager* fbxManager = FbxManager::Create();
 	Input& input_ = Input::GetInstance();
 	GameScene* gameScene = nullptr;
-
+	PostEffect* postEffect = nullptr;
 #pragma endregion//ウィンドウの生成
 
 #pragma region//メッセージループ
@@ -53,8 +54,10 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 	// ゲームシーンの初期化
 	gameScene = new GameScene();
 	gameScene->Initialize(&winApp_);
-
-
+	
+	Sprite::LoadTexture(100, L"Resources/white1x1.png");
+	postEffect = new PostEffect();
+	postEffect->Initialize();
 
 
 #pragma region//描画初期化処理
@@ -331,7 +334,8 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 		//プリミティブ形状の設定コマンド
 		dx12base.GetCmdList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		gameScene->Draw();
+		postEffect->Draw(dx12base.GetCmdList().Get());
+		//gameScene->Draw();
 
 #pragma endregion
 
@@ -352,7 +356,7 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 	//}
 	FbxLoader::GetInstance()->Finalize();
 	delete gameScene;
-
+	delete postEffect;
 
 	//ウィンドウクラス登録解除
 	UnregisterClass(winApp_.w.lpszClassName , winApp_.w.hInstance);

@@ -11,8 +11,8 @@
 /// </summary>
 class Sprite
 {
-private: // エイリアス
-	// Microsoft::WRL::を省略
+protected: // エイリアス
+	//Microsoft::WRL:://を省略
 	template <class T> using ComPtr = Microsoft::WRL::ComPtr<T>;
 	// DirectX::を省略
 	using XMFLOAT2 = DirectX::XMFLOAT2;
@@ -89,7 +89,7 @@ public: // 静的メンバ関数
 
 
 
-private: // 静的メンバ変数
+protected: // 静的メンバ変数
 	// テクスチャの最大枚数
 	static const int srvCount = 512;
 	// 頂点数
@@ -171,7 +171,7 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-private: // メンバ変数
+protected: // メンバ変数
 
 	// 頂点バッファ
 	ComPtr<ID3D12Resource> vertBuff;
@@ -215,7 +215,7 @@ private: // メンバ変数
 	// テクスチャ幅、高さ
 	XMFLOAT2 texSize = { 100.0f, 100.0f };
 
-private: // メンバ関数
+protected: // メンバ関数
 	/// <summary>
 	/// 頂点データ転送
 	/// </summary>

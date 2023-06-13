@@ -135,6 +135,7 @@
     </ClCompile>
     <ClCompile Include="FbxModel.cpp" />
     <ClCompile Include="FbxObject3D.cpp" />
+    <ClCompile Include="PostEffect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPS.h">
@@ -254,6 +255,7 @@
     </ClInclude>
     <ClInclude Include="FbxModel.h" />
     <ClInclude Include="FbxObject3D.h" />
+    <ClInclude Include="PostEffect.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Basic.hlsli">
