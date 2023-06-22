@@ -30,6 +30,7 @@ struct Node
 class FbxModel
 {
 public:
+	
 	//定数
 	//ボーンインデックスの最大数
 	static const int MAX_BONE_INDICES = 4;
@@ -67,6 +68,8 @@ public:
 	//頂点インデックス配列
 	std::vector<unsigned short>indices;
 private:
+	//ファイルの名前
+	std::string fileName;
 	//モデル名
 	std::string name;
 	//ノード配列
@@ -136,4 +139,5 @@ private:
 public:
 	//getter
 	FbxScene* GetFbxScene() { return fbxScene; }
+	std::string GetFileName() { return fileName; }
 };

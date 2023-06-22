@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jim\source\repos\GameAwards2\fbx_sdk\include;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(IncludePath);D:\School\2NenKouki\TD\fbx_sdk\include;$(IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Jim\source\repos\GameAwards2\fbx_sdk\include;$(SolutionDir)DirectXTex;$(SolutionDir)imgui;$(IncludePath);D:\School\2NenKouki\TD\fbx_sdk\include;$(SolutionDir)nlohmann</IncludePath>
     <LibraryPath>D:\School\2NenKouki\TD\fbx_sdk\lib;C:\Users\Jim\source\repos\GameAwards2\fbx_sdk\lib;$(LibraryPath);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -173,6 +173,7 @@
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="JsonLoader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -269,6 +270,7 @@
     <ClInclude Include="Goal.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="JsonLoader.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Particle.h" />

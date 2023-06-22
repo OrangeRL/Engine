@@ -31,8 +31,26 @@
 #include "UIManager.h"
 #include"FbxLoader.h"
 #include"FbxObject3D.h"
+#include"JsonLoader.h"
+#include <vector>
+#include <map>
 class GameScene {
-
+	struct LevelData
+	{
+		//オブジェクト1個分のデータ
+		struct ObjectData
+		{
+			// ファイル名
+			std::string fileName;
+			// 平行移動
+			DirectX::XMVECTOR translation;
+			// 回転角
+			DirectX::XMVECTOR rotation;
+			// スケーリング
+			DirectX::XMVECTOR scaling;
+		};
+		std::vector<ObjectData> objects;
+	};
 public: // メンバ関数
 
 	//コンストラクタ
@@ -211,4 +229,13 @@ private: // メンバ変数
 	bool bossWaitFlag = false;
 	float bossWaitTime_;
 //------------------------------------
+
+	LevelData* levelData = nullptr;
+	std::map<std::string, FbxModel*> models;
+	std::vector<FbxObject3D*> objects;
+	
+	//オブジェクト
+	//std::list<std::unique_ptr<FbxObject3D>> object;
+
+	//std::list<std::unique_ptr<FbxModel>> models;
 };
