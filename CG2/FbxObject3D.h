@@ -67,9 +67,9 @@ public://メンバ関数
 	void PlayAnimation();
 
 	//セッター
-	void SetPosition(XMFLOAT3 pos) { position = pos; }
-	void SetRotation(XMFLOAT3 rot) { rotation = rot; }
-	void SetScale(XMFLOAT3 sca) { scale = sca; }
+	void SetPosition(Vector3 pos) { worldTransform.translation = pos; }
+	void SetRotation(Vector3 rot) { worldTransform.rotation = rot; }
+	void SetScale(Vector3 scale) { worldTransform.scale = scale; }
 private://メンバ変数
 	//定数バッファ
 	//ComPtr<ID3D12Resource>constBuffTransform;
@@ -86,13 +86,13 @@ private://メンバ変数
 	ConstBufferDataMaterial* constMapMaterial = nullptr;
 private:
 	//ローカルスケール
-	XMFLOAT3 scale = { 1,1,1 };
+	Vector3 scale = { 1,1,1 };
 	//X,Y,Z軸回りのローカル行列
-	XMFLOAT3 rotation = { 0,0,0 };
+	Vector3 rotation = { 0,0,0 };
 	//ローカル座標
-	XMFLOAT3 position = { 0,0,0 };
+	Vector3 position = { 0,0,0 };
 	//ローカルワールド変換行列
-	XMMATRIX matWorld;
+	XMMATRIX* matWorld;
 	//モデル
 	FbxModel* model = nullptr;
 

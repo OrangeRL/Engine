@@ -91,8 +91,9 @@ void GameScene::Initialize(WinApp* winApp)
 	//particle3->Initialize(&viewProjection_, &matProjection_, player);
 	//loadEnemyPopData();
 	//モデル名を指定してファイル読み込み
+	//model1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
 	model1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
-
+	model2 = FbxLoader::GetInstance()->LoadModelFromFile("rumbaDancing");
 	//デバイスをセット
 	FbxObject3D::SetDevice(dx12base_.GetDevice());
 	FbxObject3D::SetCamera(&viewProjection_);
@@ -102,8 +103,10 @@ void GameScene::Initialize(WinApp* winApp)
 	object1->SetViewProjection(&viewProjection_);
 	object1->SetMatProjection(&matProjection_);
 	object1->Initialize();
-	object1->SetModel(model1);
+	object1->SetModel(model2);
 	object1->PlayAnimation();
+	object1->SetScale({ 1,1,1 });
+	object1->SetRotation({ 180,150,0 });
 
 	//rhythm = new Rhythm();
 	//rhythm->Initialize(&viewProjection_, &matProjection_);
@@ -122,10 +125,65 @@ void GameScene::Initialize(WinApp* winApp)
 //	//loadEnemyPopData(1);
 //	//ボスの雑魚敵の配置
 //	loadBossPopData(1);
+
+	//モデル名を指定してファイル読み込み
+	
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("rumbaDancing"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("boneTest"));
+		//レベルエディタ
+	jsonLoader = new JsonLoader();
+	jsonLoader->LoadFile("test3.json");
+
+	for (int i = 0; i < jsonLoader->GetObjectData(); i++)
+	{
+		std::unique_ptr<FbxObject3D>newObject = std::make_unique<FbxObject3D>();
+		//オブジェクト初期化
+		newObject->SetViewProjection(&viewProjection_);
+		newObject->SetMatProjection(&matProjection_);
+		newObject->Initialize();
+		/*newObject->SetModel(model1);
+		newObject->PlayAnimation();*/
+		//モデルセット
+		for (std::unique_ptr<FbxModel>& model : models)
+		{
+			auto a = jsonLoader->GetFileName(i);
+			auto b = model->GetFileName();
+
+			if (jsonLoader->GetFileName(i) == model->GetFileName())
+			{
+				newObject->SetModel(model.get());
+			}
+		}
+
+		//配置
+		newObject->SetPosition(jsonLoader->GetPosition(i));
+		newObject->SetScale(jsonLoader->GetScale(i));
+		newObject->SetRotation(jsonLoader->GetRotation(i));
+
+		objects.push_back(std::move(newObject));
+	}
 }
 
 void GameScene::Update()
 {
+	//スペースキーでファイル読み込み更新
+	if (input_.TriggerKey(DIK_SPACE))
+	{
+		jsonLoader->LoadFile("test3.json");
+		int i = 0;
+		for (std::unique_ptr<FbxObject3D>& object0 : objects)
+		{
+			object0->SetPosition(jsonLoader->GetPosition(i));
+			object0->SetScale(jsonLoader->GetScale(i));
+			object0->SetRotation(jsonLoader->GetRotation(i));
+			object0->PlayAnimation();
+			i++;
+		}
+	}
+	for (std::unique_ptr<FbxObject3D>& object0 : objects)
+	{
+		object0->Update();
+	}
 	//spawntime += 1;
 	//LoadCsv(L"Resources/enemyPos.csv", enemyVal);
 	////ランダムな整数
@@ -360,12 +418,15 @@ void GameScene::Draw() {
 	//for (std::unique_ptr<EnemyBullet>& bullet : bullets2) {
 	//	bullet->Draw();
 	//}
-	
-	player->Draw();
+	for (std::unique_ptr<FbxObject3D>& object0 : objects)
+	{
+		object0->Draw(dx12base_.GetCmdList().Get());
+	}
+	//player->Draw();
 	//アイテム描画
 	//for (std::unique_ptr<Item>& item : items_) { item->Draw(); }
-	skydome->Draw();
-	object1->Draw(dx12base_.GetCmdList().Get());
+	//skydome->Draw();
+	//object1->Draw(dx12base_.GetCmdList().Get());
 	//スプライト描画
 	Sprite::PreDraw(dx12base_.GetCmdList().Get());
 

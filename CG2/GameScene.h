@@ -31,6 +31,9 @@
 #include "UIManager.h"
 #include"FbxLoader.h"
 #include"FbxObject3D.h"
+#include"JsonLoader.h"
+#include <vector>
+#include <map>
 class GameScene {
 
 public: // メンバ関数
@@ -147,6 +150,8 @@ private: // メンバ変数
 	std::list<std::unique_ptr<Item>>items_;
 
 	FbxModel* model1 = nullptr;
+	FbxModel* model2 = nullptr;
+	FbxModel* TestFBX = nullptr;
 	FbxObject3D* object1 = nullptr;
 
 	Vector3 enemyPos = {};
@@ -211,4 +216,15 @@ private: // メンバ変数
 	bool bossWaitFlag = false;
 	float bossWaitTime_;
 //------------------------------------
+
+//JsonLoader
+
+	//レベルエディタ
+	JsonLoader* jsonLoader = nullptr;
+	//オブジェクト
+	std::list<std::unique_ptr<FbxObject3D>> objects;
+	//オブジェクトの数
+	size_t objectNum = 4;
+	std::list<std::unique_ptr<FbxModel>> models;
+
 };

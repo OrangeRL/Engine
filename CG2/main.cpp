@@ -334,8 +334,8 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 		//プリミティブ形状の設定コマンド
 		dx12base.GetCmdList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		postEffect->Draw(dx12base.GetCmdList().Get());
-		//gameScene->Draw();
+		//postEffect->Draw(dx12base.GetCmdList().Get());
+		gameScene->Draw();
 
 #pragma endregion
 
@@ -354,8 +354,9 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 	//	debugInterface->ReportLiveDeviceObjects(D3D12_RLDO_DETAIL | D3D12_RLDO_IGNORE_INTERNAL);
 	//	debugInterface->Release();
 	//}
-	FbxLoader::GetInstance()->Finalize();
+	
 	delete gameScene;
+	FbxLoader::GetInstance()->Finalize();
 	delete postEffect;
 
 	//ウィンドウクラス登録解除
