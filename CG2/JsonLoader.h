@@ -43,6 +43,10 @@ public:
 		Vector3 rotation;
 		// スケーリング
 		Vector3 scaling;
+		//動き
+		Vector3 point_1;
+		Vector3 point_2;
+		Vector3 point_3;
 	};
 
 	//メンバ関数
@@ -55,6 +59,9 @@ public:
 	Vector3 GetPosition(int number) { return objects[number].translation; }
 	Vector3 GetRotation(int number) { return objects[number].rotation; }
 	Vector3 GetScale(int number) { return objects[number].scaling; }
+	Vector3 GetPoint1(int number) { return objects[number].point_1; }
+	Vector3 GetPoint2(int number) { return objects[number].point_2; }
+	Vector3 GetPoint3(int number) { return objects[number].point_3; }
 
 	//メンバ変数
 private:

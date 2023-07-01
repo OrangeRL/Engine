@@ -58,6 +58,23 @@ void JsonLoader::LoadFile(const std::string fileName)
 				//ファイル名
 				objectData.file_name = object["file_name"];
 			}
+
+			if (object.contains("move_points"))
+			{
+				nlohmann::json& move_points = object["move_points"];
+				//平行移動
+				objectData.point_1.x = (float)move_points["point_1"][1];
+				objectData.point_1.y = (float)move_points["point_1"][2];
+				objectData.point_1.z = -(float)move_points["point_1"][0];
+
+				objectData.point_2.x = (float)move_points["point_2"][1];
+				objectData.point_2.y = (float)move_points["point_2"][2];
+				objectData.point_2.z = -(float)move_points["point_2"][0];
+
+				objectData.point_3.x = (float)move_points["point_3"][1];
+				objectData.point_3.y = (float)move_points["point_3"][2];
+				objectData.point_3.z = -(float)move_points["point_3"][0];
+			}
 			//トランスフォームのパラメータ読み込み
 			nlohmann::json& transform = object["transform"];
 			//平行移動

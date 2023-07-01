@@ -95,3 +95,10 @@ const Vector3& operator/(const Vector3& v , float s) {
 	Vector3 temp(v);
 	return temp /= s;
 }
+
+const Vector3 lerp(const Vector3& start, const Vector3& end, const float t)
+{
+	float y = t;
+	//return start * (1.0f - y) + end * y;
+	return start * (1.0f - t) + end * t;
+}

@@ -3,8 +3,8 @@
 void ViewProjection::Initialize(WinApp* winApp) {
 	//eye = { 0 , 0 , -50 };	//視点座標
 	//target = { 0 , 0 , 0 };	//注視点座標
-	eye = { 10 , 0 , -50 };	//視点座標
-	target = { 0 , 0 , 10 };	//注視点座標
+	eye = { 0 , 0 , -50 };	//視点座標
+	target = { 0 , 0 , 0 };	//注視点座標
 	up = { 0 , 1 , 0 };		//上方向ベクトル
 	FOV(winApp);
 	UpdateView();

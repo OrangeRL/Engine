@@ -198,28 +198,28 @@ private: // メンバ変数
 	std::list<std::unique_ptr<Collision>> collisionsEnemyBullet;
 	std::list<std::unique_ptr<Collision>> collisionsAim;
 
-		int32_t spawntime = 0;
+	int32_t spawntime = 0;
 
 	//UI関連
 	UIManager UIManager;
 
-// 敵コマンド関係
-//------------------------------------
+	// 敵コマンド関係
+	//------------------------------------
 	std::stringstream enemyPopCommand;
 	bool waitFlag = true;
-	float waitTime_=10;
+	float waitTime_ = 10;
 	size_t enemyVal = 80;
-//------------------------------------
-//ボスコマンド関係
-//------------------------------------
+	//------------------------------------
+	//ボスコマンド関係
+	//------------------------------------
 	std::stringstream bossPopCommand;
 	bool bossWaitFlag = false;
 	float bossWaitTime_;
-//------------------------------------
+	//------------------------------------
 
-//JsonLoader
+	//JsonLoader
 
-	//レベルエディタ
+		//レベルエディタ
 	JsonLoader* jsonLoader = nullptr;
 	//オブジェクト
 	std::list<std::unique_ptr<FbxObject3D>> objects;
@@ -227,4 +227,16 @@ private: // メンバ変数
 	size_t objectNum = 4;
 	std::list<std::unique_ptr<FbxModel>> models;
 
+	Vector3 p0 = { -50.0f, 0.0f, 0.0f };	//スタート地点
+	Vector3 p1 = { -25.0f, 25.0f, 25.0f };	//制御点
+	Vector3 p2 = { 25.0f, -15.0f, -25.0f };	//エンド地点
+   Vector3 end = { 50.0f, 0.0f, 0.0f };
+	float maxTime = 5.0f;			//全体時間[s]
+	float timeRate = 10000;					//何%時間が進んだか(率)
+	//オブジェクトの位置
+	Vector3 position;
+	Vector3 a;
+	Vector3 b;
+	float t = 0.0f;
+	size_t startIndex = 1;
 };

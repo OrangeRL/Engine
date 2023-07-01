@@ -70,6 +70,7 @@ public://メンバ関数
 	void SetPosition(Vector3 pos) { worldTransform.translation = pos; }
 	void SetRotation(Vector3 rot) { worldTransform.rotation = rot; }
 	void SetScale(Vector3 scale) { worldTransform.scale = scale; }
+
 private://メンバ変数
 	//定数バッファ
 	//ComPtr<ID3D12Resource>constBuffTransform;
