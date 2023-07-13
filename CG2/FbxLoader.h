@@ -69,7 +69,7 @@ private:
 	FbxLoader(const FbxLoader& obj) = delete;
 	// コピー代入演算子を禁止（シングルトンパターン）
 	void operator=(const FbxLoader& obj) = delete;
-
+	
 	//D3D12デバイス
 	static ComPtr<ID3D12Device> device;
 	//FBXマネージャ

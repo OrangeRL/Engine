@@ -68,7 +68,7 @@ public://メンバ関数
 
 	//セッター
 	void SetPosition(XMFLOAT3 pos) { position = pos; }
-	void SetRotation(XMFLOAT3 rot) { rotation = rot; }
+	void SetRotation(Vector3 rot) { rotation = rot; }
 	void SetScale(XMFLOAT3 sca) { scale = sca; }
 private://メンバ変数
 	//定数バッファ
@@ -88,7 +88,7 @@ private:
 	//ローカルスケール
 	XMFLOAT3 scale = { 1,1,1 };
 	//X,Y,Z軸回りのローカル行列
-	XMFLOAT3 rotation = { 0,0,0 };
+	Vector3 rotation = { 0,0,0 };
 	//ローカル座標
 	XMFLOAT3 position = { 0,0,0 };
 	//ローカルワールド変換行列

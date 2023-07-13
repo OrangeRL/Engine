@@ -55,7 +55,7 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 	gameScene = new GameScene();
 	gameScene->Initialize(&winApp_);
 	
-	Sprite::LoadTexture(100, L"Resources/white1x1.png");
+	//Sprite::LoadTexture(100, L"Resources/white1x1.png");
 	postEffect = new PostEffect();
 	postEffect->Initialize();
 
@@ -311,7 +311,7 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 
 #pragma region//DirectX毎フレーム処理
 
-		fps->FpsControlBegin();
+		//fps->FpsControlBegin();
 
 		// キーボード情報の取得開始
 		input_.Update();
@@ -322,8 +322,7 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 
 #pragma endregion//更新処理
 
-		//描画前処理
-		dx12base.PreDraw();
+		
 
 #pragma region//描画処理
 
@@ -334,17 +333,24 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 		//プリミティブ形状の設定コマンド
 		dx12base.GetCmdList()->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
-		postEffect->Draw(dx12base.GetCmdList().Get());
-		//gameScene->Draw();
+		postEffect->PreDrawScene(dx12base.GetCmdList().Get());
+
+		gameScene->Draw();
+		
+		postEffect->PostDrawScene(dx12base.GetCmdList().Get());
+		
 
 #pragma endregion
+		//描画前処理
+		dx12base.PreDraw();
 
+		postEffect->Draw(dx12base.GetCmdList().Get());
 		//描画後処理
 		dx12base.PostDraw();
 
 #pragma endregion//DirectX毎フレーム処理
 
-		fps->FpsControlEnd();
+		//fps->FpsControlEnd();
 	}
 #pragma endregion//ゲームループ
 

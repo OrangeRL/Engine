@@ -40,7 +40,7 @@ void GameScene::Initialize(WinApp* winApp)
 
 	crosshair->LoadTexture(11, L"Resources/crosshair.png");
 	crosshair = Sprite::Create(11, { 0,0 });
-  
+
 	//UI初期化
 	UIManager.Initialize(1);
 
@@ -63,7 +63,7 @@ void GameScene::Initialize(WinApp* winApp)
 	//レールカメラ
 	reilCamera = new ReilCamera();
 	//reilCamera->Initialize({ 0,0,-50 }, { 0,0,0 },winApp);
-	reilCamera->Initialize({ 0,0,-50 }, { 0,0,0 }, winApp);
+	reilCamera->Initialize({ 0,0,0 }, { 0,0,0 }, winApp);
 
 	//アイテム
 	//item = new Item();
@@ -104,7 +104,8 @@ void GameScene::Initialize(WinApp* winApp)
 	object1->Initialize();
 	object1->SetModel(model1);
 	object1->PlayAnimation();
-
+	object1->SetRotation({ 0.0f, 90.0f, 90.0f });
+	
 	//rhythm = new Rhythm();
 	//rhythm->Initialize(&viewProjection_, &matProjection_);
 //	spawntime = 0;
@@ -134,7 +135,7 @@ void GameScene::Update()
 	viewProjection_ = reilCamera->GetViewProjection();
 
 	viewProjection_.UpdateView();
-
+	skydome->Update();
 	////UI更新
 	//UIManager.Update(rhythm, &input_, player->GetIsDead());
 
@@ -328,46 +329,15 @@ void GameScene::Update()
 
 void GameScene::Draw() {
 	//3D描画
-	//プレイヤー描画
-	
-
-	//rhythm->Draw(player->GetIsDead());
-	//particle->Draw();
-	//particle2->Draw();
-	
-	/*for (int i = 0; i < enemyVal; i++) {
-		pManager[i].Draw();
-	}*/
-	//敵の描画
-	//for (std::unique_ptr<Enemy>& enemy : enemys1) {
-	//	enemy->Draw();
-	//}
-
-	//if (rhythm->GetSoundState().wave == 3) {
-	//	boss->Draw();
-	//	for (std::unique_ptr<BossBullet>& bullet : bossBullet1) {
-	//		bullet->Draw();
-	//	}
-
-	//	for (std::unique_ptr<BossBullet>& bullet : bossBullet2) {
-	//		bullet->Draw();
-	//	}
-	//}
-
-	//for (std::unique_ptr<EnemyBullet>& bullet : bullets1) {
-	//	bullet->Draw();
-	//}
-	//for (std::unique_ptr<EnemyBullet>& bullet : bullets2) {
-	//	bullet->Draw();
-	//}
-	
 	player->Draw();
 	//アイテム描画
 	//for (std::unique_ptr<Item>& item : items_) { item->Draw(); }
 	skydome->Draw();
+
 	object1->Draw(dx12base_.GetCmdList().Get());
+
 	//スプライト描画
-	Sprite::PreDraw(dx12base_.GetCmdList().Get());
+
 
 	//crosshair->Draw();
 	//
@@ -376,7 +346,7 @@ void GameScene::Draw() {
 	// デバッグテキストの描画
 	debugText.DrawAll(dx12base_.GetCmdList().Get());
 
-	Sprite::PostDraw();
+
 
 }
 

@@ -53,7 +53,7 @@ public:
 	//ƒƒ“ƒo•Ï”
 private:
 	//DirectX‰Šú‰»ˆ—
-	ComPtr<ID3D12Debug> debugController;
+	ComPtr<ID3D12Debug1> debugController;
 	HRESULT result;
 	ComPtr<ID3D12Device> device = nullptr;
 	ComPtr<IDXGIFactory7> dxgiFactory = nullptr;
