@@ -1,4 +1,5 @@
 #include "Sprite.h"
+#include "Input.h"
 class PostEffect :
 	public Sprite
 {
@@ -34,7 +35,7 @@ public:
 	void CreateGraphicsPipelineState();
 private:
 	//テクスチャバッファ
-	ComPtr<ID3D12Resource> texBuff;
+	ComPtr<ID3D12Resource>texBuff[2];
 	//SRV用デスクリプタヒープ
 	ComPtr<ID3D12DescriptorHeap> descHeapSRV;
 	//深度バッファ
@@ -50,4 +51,7 @@ private:
 	ComPtr<ID3D12PipelineState> pipelineState;
 	//ルートシグネチャ
 	ComPtr<ID3D12RootSignature> rootSignature;
+
+	Input& input_ = Input::GetInstance();
+
 };

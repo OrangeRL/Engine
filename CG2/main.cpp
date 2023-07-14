@@ -324,6 +324,15 @@ int WINAPI WinMain(_In_ HINSTANCE , _In_opt_ HINSTANCE , _In_ LPSTR , _In_ int) 
 #pragma region//更新処理
 
 		gameScene->Update();
+	/*	postEffect2->SetAlpha(1.0f);
+		postEffect2->SetColor({ 0.0f, 1.0f, 0.0f });
+		postEffect2->SetScale({ window_width * 0.5f, window_height * 0.5f });
+		postEffect2->SetPosition({ 0.0f, 0.0 });
+		postEffect2->Update();
+		postEffect1->SetAlpha(1.0f);
+		postEffect1->SetScale({ window_width * 0.5f, window_height * 0.5f });
+		postEffect1->SetPosition({ window_width * 0.5f, window_height * 0.5f });
+		postEffect1->Update();*/
 
 #pragma endregion//更新処理
 
