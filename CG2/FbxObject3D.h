@@ -12,7 +12,7 @@
 class FbxObject3D
 {
 protected:	//エイリアス
-//Microsoft::WRL::を省略
+	//Microsoft::WRL::を省略
 	template<class T>using ComPtr = Microsoft::WRL::ComPtr<T>;
 	//DirectX::を省略
 	using XMFLOAT2 = DirectX::XMFLOAT2;
@@ -38,7 +38,7 @@ public:
 	struct ConstBufferDataMaterial {
 		Vector4 color; //色(RGBA)
 	};
-//セッター
+	//セッター
 	static void SetDevice(ComPtr<ID3D12Device> device) { FbxObject3D::device = device; }
 	static void SetCamera(ViewProjection* camera) { FbxObject3D::camera = camera; }
 private://静的メンバ変数
@@ -67,9 +67,10 @@ public://メンバ関数
 	void PlayAnimation();
 
 	//セッター
-	void SetPosition(XMFLOAT3 pos) { position = pos; }
-	void SetRotation(Vector3 rot) { rotation = rot; }
-	void SetScale(XMFLOAT3 sca) { scale = sca; }
+	void SetPosition(Vector3 pos) { worldTransform.translation = pos; }
+	void SetRotation(Vector3 rot) { worldTransform.rotation = rot; }
+	void SetScale(Vector3 scale) { worldTransform.scale = scale; }
+
 private://メンバ変数
 	//定数バッファ
 	//ComPtr<ID3D12Resource>constBuffTransform;
@@ -86,13 +87,13 @@ private://メンバ変数
 	ConstBufferDataMaterial* constMapMaterial = nullptr;
 private:
 	//ローカルスケール
-	XMFLOAT3 scale = { 1,1,1 };
+	Vector3 scale = { 1,1,1 };
 	//X,Y,Z軸回りのローカル行列
 	Vector3 rotation = { 0,0,0 };
 	//ローカル座標
-	XMFLOAT3 position = { 0,0,0 };
+	Vector3 position = { 0,0,0 };
 	//ローカルワールド変換行列
-	XMMATRIX matWorld;
+	XMMATRIX* matWorld;
 	//モデル
 	FbxModel* model = nullptr;
 
