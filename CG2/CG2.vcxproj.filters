@@ -137,6 +137,7 @@
     <ClCompile Include="FbxObject3D.cpp" />
     <ClCompile Include="PostEffect.cpp" />
     <ClCompile Include="JsonLoader.cpp" />
+    <ClCompile Include="Spline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FPS.h">
@@ -258,6 +259,7 @@
     <ClInclude Include="FbxObject3D.h" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="JsonLoader.h" />
+    <ClInclude Include="Spline.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Basic.hlsli">

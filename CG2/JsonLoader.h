@@ -47,6 +47,8 @@ public:
 		Vector3 point_1;
 		Vector3 point_2;
 		Vector3 point_3;
+		Vector3 point_4;
+		Vector3 point_5;
 	};
 
 	//ƒƒ“ƒoŠÖ”
@@ -62,6 +64,8 @@ public:
 	Vector3 GetPoint1(int number) { return objects[number].point_1; }
 	Vector3 GetPoint2(int number) { return objects[number].point_2; }
 	Vector3 GetPoint3(int number) { return objects[number].point_3; }
+	Vector3 GetPoint4(int number) { return objects[number].point_4; }
+	Vector3 GetPoint5(int number) { return objects[number].point_5; }
 
 	//ƒƒ“ƒo•Ï”
 private:

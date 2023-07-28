@@ -3,28 +3,6 @@
 #include <chrono>
 #include <thread>
 
-Vector3 SplinePosition(const std::vector<Vector3>& points, size_t startIndex, float t)
-{
-	// 補完すべき点の数
-	size_t n = points.size() - 2;
-
-	if (startIndex > n) return points[n];	// Pnの値を返す
-	if (startIndex < 1) return points[1];	// P1の値を返す
-
-	// p0～p1 の制御点を取得する ※ p1～p2 を補完する
-	Vector3 p0 = points[startIndex - 1];
-	Vector3 p1 = points[startIndex];
-	Vector3 p2 = points[startIndex + 1];
-	Vector3 p3 = points[startIndex + 2];
-
-	// Catmull - Rom の式による補間
-	Vector3 position = 0.5 * ((2 * p1 + (-p0 + p2) * t) +
-		(2 * p0 - 5 * p1 + 4 * p2 - p3) * (t * t) +
-		(-p0 + 3 * p1 - 3 * p2 + p3) * (t * t * t));
-
-	return position;
-}
-
 GameScene::GameScene() {
 
 }
@@ -114,8 +92,8 @@ void GameScene::Initialize(WinApp* winApp)
 	//loadEnemyPopData();
 	//モデル名を指定してファイル読み込み
 	//model1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
-	model1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest");
-	model2 = FbxLoader::GetInstance()->LoadModelFromFile("fbxObjectTest");
+	model1 = FbxLoader::GetInstance()->LoadModelFromFile("boneTest", "Resources/white1x1.png");
+	model2 = FbxLoader::GetInstance()->LoadModelFromFile("fbxObjectTest", "Resources/white1x1.png");
 	//デバイスをセット
 	FbxObject3D::SetDevice(dx12base_.GetDevice());
 	FbxObject3D::SetCamera(&viewProjection_);
@@ -153,13 +131,15 @@ void GameScene::Initialize(WinApp* winApp)
 
 	//モデル名を指定してファイル読み込み
 
-	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("rumbaDancing"));
-	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("boneTest"));
-	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("fbxTest"));
-	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("fbxObjectTest"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("rumbaDancing", "Resources/white1x1.png"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("boneTest", "Resources/white1x1.png"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("fbxTest", "Resources/white1x1.png"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("fbxObjectTest", "Resources/white1x1.png"));
+	models.emplace_back(FbxLoader::GetInstance()->LoadModelFromFile("ground", "Resources/e.png"));
+
 	//レベルエディタ
 	jsonLoader = new JsonLoader();
-	jsonLoader->LoadFile("test5.json");
+	jsonLoader->LoadFile("test7.json");
 
 	for (int i = 0; i < jsonLoader->GetObjectData(); i++)
 	{
@@ -218,7 +198,7 @@ void GameScene::Update()
 	std::default_random_engine engine(seed_gen());
 
 	//viewProjection_ = reilCamera->GetViewProjection();
-
+	viewProjection_.eye.z - 100;
 	viewProjection_.UpdateView();
 
 	////UI更新

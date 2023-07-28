@@ -74,23 +74,31 @@ void JsonLoader::LoadFile(const std::string fileName)
 				objectData.point_3.x = (float)move_points["point_3"][1];
 				objectData.point_3.y = (float)move_points["point_3"][2];
 				objectData.point_3.z = -(float)move_points["point_3"][0];
+
+				objectData.point_4.x = (float)move_points["point_4"][1];
+				objectData.point_4.y = (float)move_points["point_4"][2];
+				objectData.point_4.z =-(float)move_points["point_4"][0];
+
+				objectData.point_5.x = (float)move_points["point_5"][1];
+				objectData.point_5.y = (float)move_points["point_5"][2];
+				objectData.point_5.z =-(float)move_points["point_5"][0];
 			}
 			//トランスフォームのパラメータ読み込み
 			nlohmann::json& transform = object["transform"];
 			//平行移動
-			objectData.translation.x = (float)transform["translation"][1];
+			objectData.translation.x = (float)transform["translation"][0];
 			objectData.translation.y = (float)transform["translation"][2];
-			objectData.translation.z = -(float)transform["translation"][0];
+			objectData.translation.z = -(float)transform["translation"][1];
 			//objectData.translation.m128_f32[3] = 1.0f;
 			//回転角
-			objectData.rotation.x = -(float)transform["rotation"][1];
+			objectData.rotation.x = -(float)transform["rotation"][0];
 			objectData.rotation.y = -(float)transform["rotation"][2];
-			objectData.rotation.z = (float)transform["rotation"][0];
+			objectData.rotation.z = (float)transform["rotation"][1];
 			//objectData.rotation.m128_f32[3] = 0.0f;
 			//スケーリング
-			objectData.scaling.x = (float)transform["scaling"][1];
+			objectData.scaling.x = (float)transform["scaling"][0];
 			objectData.scaling.y = (float)transform["scaling"][2];
-			objectData.scaling.z = (float)transform["scaling"][0];
+			objectData.scaling.z = (float)transform["scaling"][1];
 			//objectData.scaling.m128_f32[3] = 0.0f;
 			//TODO:コライダーのパラメータ読み込み
 

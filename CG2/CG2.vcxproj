@@ -188,6 +188,7 @@
     <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="SpawnParticle.cpp" />
     <ClCompile Include="SpawnParticleManager.cpp" />
+    <ClCompile Include="Spline.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UIManager.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpawnParticle.h" />
     <ClInclude Include="SpawnParticleManager.h" />
+    <ClInclude Include="Spline.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UIManager.h" />
